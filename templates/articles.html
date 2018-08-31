@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block title %}
+Makaleler Bölümü
+{% endblock  %}
+{% block body %}
+<form>
+    {% csrf_token %}
+<div class="col-md-6 offset-md-3">
+<input type="search" name="arama" id="arama"><button class="btn btn-danger">Başlıklarda Ara</button>
+</div>
+</form>
+<p>
+{% if makaleler %}
+{% for makale in makaleler  %}
+            <h3>{{makale.title}}</h3>
+            <h4>Yazar: {{makale.author}}</h4>
+            <h5>Tarih: {{makale.created_date}}</h5>
+            <p>
+                {{makale.content|safe}}
+            {% if makale.article_image %}
+            <img class="img-thumbnail" width="100%" src="{{makale.article_image.url}}">
+            {% endif %}
+            
+            </p>
+            <hr>
+
+{% endfor %}
+{% else %}
+<div class="alert alert-danger">Makale Bulunamadı!</div>
+{% endif %}
+{% endblock body %}

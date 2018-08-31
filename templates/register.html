@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Kullanıcı Kayıt Ekranı
+{% endblock title %}
+
+{% block body %}
+{% include "includes/navbar.html" %}
+<h3>Kayıt Ol</h3>
+<hr>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        {% load crispy_forms_tags %}
+        <form method="post">
+            {% csrf_token %}
+            {{form|crispy}}
+            <button type="submit">Kayıt Ol</button>
+        </form>
+    </div>
+</div>
+{% endblock body %}
